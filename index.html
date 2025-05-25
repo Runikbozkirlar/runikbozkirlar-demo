@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantastik Galeri</title>
+    <title data-lang-key="title">Fantastik Galeri</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
         body {
@@ -37,6 +37,9 @@
             top: 0;
             z-index: 100;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .navbar a {
             color: white;
@@ -51,6 +54,28 @@
         .navbar a:hover,
         .navbar a:active {
             color: #ff5555;
+        }
+        /* Dil Değiştirme Butonu */
+        .language-switcher {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .language-switcher button {
+            background-color: #ff5555;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .language-switcher button:hover,
+        .language-switcher button.active {
+            background-color: #cc4444;
         }
         /* Genel İçerik Alanı */
         .page {
@@ -294,10 +319,10 @@
             border-radius: 8px;
             transition: transform 0.3s ease;
             cursor: pointer;
-            display: block; /* Varsayılan olarak görünür */
+            display: block;
         }
         .gallery-item.hidden {
-            display: none; /* Filtrelendiğinde gizlenir */
+            display: none;
         }
         .gallery-item img {
             width: 100%;
@@ -451,6 +476,13 @@
                 font-size: 16px;
                 margin: 0 10px;
             }
+            .language-switcher {
+                right: 10px;
+            }
+            .language-switcher button {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
             .content h1, .map-section h1 {
                 font-size: 28px;
             }
@@ -545,9 +577,21 @@
             }
         }
         @media (max-width: 480px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
             .navbar a {
                 font-size: 14px;
                 margin: 0 8px;
+            }
+            .language-switcher {
+                position: static;
+                margin-top: 10px;
+            }
+            .language-switcher button {
+                font-size: 10px;
+                padding: 3px 6px;
             }
             .content h1, .map-section h1 {
                 font-size: 24px;
@@ -632,17 +676,24 @@
 <body>
     <!-- Navigasyon Çubuğu -->
     <div class="navbar">
-        <a onclick="showPage('home')">Anasayfa</a>
-        <a onclick="showPage('map')">Evrenimiz</a>
-        <a onclick="showPage('contact')">İletişim</a>
-        <a onclick="showPage('gallery')">Galeri</a>
+        <div>
+            <a onclick="showPage('home')" data-lang-key="nav_home">Anasayfa</a>
+            <a onclick="showPage('map')" data-lang-key="nav_map">Evrenimiz</a>
+            <a onclick="showPage('contact')" data-lang-key="nav_contact">İletişim</a>
+            <a onclick="showPage('gallery')" data-lang-key="nav_gallery">Galeri</a>
+        </div>
+        <!-- Dil Değiştirme Butonları -->
+        <div class="language-switcher">
+            <button onclick="changeLanguage('tr')" class="active">TR</button>
+            <button onclick="changeLanguage('en')">EN</button>
+        </div>
     </div>
 
     <!-- Anasayfa -->
     <div id="home" class="page active">
         <div class="content">
-            <h1>Biz Kimiz?</h1>
-            <p>
+            <h1 data-lang-key="home_title">Biz Kimiz?</h1>
+            <p data-lang-key="home_description">
                 Biz, mitoloji ve fantastik dünyaların derinliklerinden ilham alan bir sanat topluluğuyuz. Her bir eserimizde, unutulmuş hikayeleri ve güçlü karakterleri hayata geçiriyoruz. Amacımız, izleyicilerimize hem görsel hem de duygusal bir yolculuk sunmak. Efsanelerin ve hayallerin buluştuğu bu dünyada, her birimiz birer hikaye anlatıcısıyız.
             </p>
 
@@ -650,28 +701,28 @@
             <div class="carousel">
                 <div class="carousel-slide active">
                     <img src="img/bozkir_vadisi.png" alt="Bozkır Vadisi" loading="lazy">
-                    <div class="caption">Bozkır Vadisi: Ataların Laneti</div>
+                    <div class="caption" data-lang-key="carousel_1">Bozkır Vadisi: Ataların Laneti</div>
                 </div>
                 <div class="carousel-slide">
                     <img src="img/demir_kalp.png" alt="Demir Kalp" loading="lazy">
-                    <div class="caption">Demir Kalp: İntikam Yemini</div>
+                    <div class="caption" data-lang-key="carousel_2">Demir Kalp: İntikam Yemini</div>
                 </div>
                 <div class="carousel-slide">
                     <img src="img/geceye_kosusan.png" alt="Geceye Koşusan" loading="lazy">
-                    <div class="caption">Geceye Koşusan: Gölge Avcısı</div>
+                    <div class="caption" data-lang-key="carousel_3">Geceye Koşusan: Gölge Avcısı</div>
                 </div>
                 <div class="carousel-slide">
                     <img src="img/heimdall.png" alt="Heimdall" loading="lazy">
-                    <div class="caption">Heimdall: Göklerin Bekçisi</div>
+                    <div class="caption" data-lang-key="carousel_4">Heimdall: Göklerin Bekçisi</div>
                 </div>
                 <div class="carousel-slide">
                     <img src="img/kanli_yemin.png" alt="Kanlı Yemin" loading="lazy">
-                    <div class="caption">Kanlı Yemin: Savaş Lordu</div>
+                    <div class="caption" data-lang-key="carousel_5">Kanlı Yemin: Savaş Lordu</div>
                 </div>
             </div>
 
             <!-- Etkileşimli Buton -->
-            <a href="#" class="action-button" onclick="showPage('gallery')">Galeriye Göz At</a>
+            <a href="#" class="action-button" onclick="showPage('gallery')" data-lang-key="home_button">Galeriye Göz At</a>
         </div>
 
         <!-- Sosyal Medya Bağlantıları -->
@@ -685,7 +736,7 @@
     <!-- Evrenimiz (Harita) Sayfası -->
     <div id="map" class="page">
         <div class="map-section">
-            <h1>Evrenimizin Haritası</h1>
+            <h1 data-lang-key="map_title">Evrenimizin Haritası</h1>
             <div class="map-container">
                 <img src="img/harita.png" alt="Evren Haritası" loading="lazy">
             </div>
@@ -695,25 +746,25 @@
     <!-- İletişim Sayfası -->
     <div id="contact" class="page">
         <div class="content">
-            <h1>İletişim</h1>
+            <h1 data-lang-key="contact_title">İletişim</h1>
             <!-- Mesaj Formu -->
             <form class="contact-form" id="contact-form" onsubmit="return handleFormSubmit(event)">
-                <label for="name">Adınız</label>
-                <input type="text" id="name" name="name" placeholder="Adınızı girin" required>
+                <label for="name" data-lang-key="contact_name_label">Adınız</label>
+                <input type="text" id="name" name="name" placeholder="Adınızı girin" data-lang-placeholder="contact_name_placeholder" required>
                 
-                <label for="email">E-posta Adresiniz</label>
-                <input type="email" id="email" name="email" placeholder="E-posta adresinizi girin" required>
+                <label for="email" data-lang-key="contact_email_label">E-posta Adresiniz</label>
+                <input type="email" id="email" name="email" placeholder="E-posta adresinizi girin" data-lang-placeholder="contact_email_placeholder" required>
                 
-                <label for="message">Mesajınız</label>
-                <textarea id="message" name="message" placeholder="Mesajınızı yazın" required></textarea>
+                <label for="message" data-lang-key="contact_message_label">Mesajınız</label>
+                <textarea id="message" name="message" placeholder="Mesajınızı yazın" data-lang-placeholder="contact_message_placeholder" required></textarea>
                 
-                <button type="submit">Mesaj Gönder</button>
+                <button type="submit" data-lang-key="contact_submit">Mesaj Gönder</button>
                 <div class="form-message" id="form-message"></div>
             </form>
             
             <!-- İletişim Bilgileri -->
             <div class="contact-info">
-                <p>Alternatif olarak, aşağıdaki bilgileri kullanarak da bizimle iletişime geçebilirsiniz:</p>
+                <p data-lang-key="contact_alternative">Alternatif olarak, aşağıdaki bilgileri kullanarak da bizimle iletişime geçebilirsiniz:</p>
                 <ul>
                     <li>
                         <i class="fab fa-x-twitter"></i>
@@ -730,117 +781,117 @@
 
     <!-- Galeri -->
     <div id="gallery" class="page">
-        <h1>Görsel Galeri</h1>
+        <h1 data-lang-key="gallery_title">Görsel Galeri</h1>
         <!-- Filtreleme Çubuğu -->
         <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterGallery('all')">Tümü</button>
-            <button class="filter-btn" onclick="filterGallery('turk')">Türk Mitolojisi</button>
-            <button class="filter-btn" onclick="filterGallery('iskandinav')">İskandinav Mitolojisi</button>
+            <button class="filter-btn active" onclick="filterGallery('all')" data-lang-key="gallery_filter_all">Tümü</button>
+            <button class="filter-btn" onclick="filterGallery('turk')" data-lang-key="gallery_filter_turk">Türk Mitolojisi</button>
+            <button class="filter-btn" onclick="filterGallery('iskandinav')" data-lang-key="gallery_filter_iskandinav">İskandinav Mitolojisi</button>
         </div>
         <div class="gallery">
             <div class="gallery-item" data-category="turk" onclick="openLightbox(0)">
                 <img src="img/bozkir_vadisi.png" alt="Bozkır Vadisi" loading="lazy">
-                <p>Bozkır Vadisi</p>
+                <p data-lang-key="gallery_item_0">Bozkır Vadisi</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(1)">
                 <img src="img/deli.png" alt="Deli" loading="lazy">
-                <p>Deli</p>
+                <p data-lang-key="gallery_item_1">Deli</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(2)">
                 <img src="img/demir_kalp.png" alt="Demir Kalp" loading="lazy">
-                <p>Demir Kalp</p>
+                <p data-lang-key="gallery_item_2">Demir Kalp</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(3)">
                 <img src="img/geceye_kosusan.png" alt="Geceye Koşusan" loading="lazy">
-                <p>Geceye Koşusan</p>
+                <p data-lang-key="gallery_item_3">Geceye Koşusan</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(4)">
                 <img src="img/gizemi.png" alt="Gizemi" loading="lazy">
-                <p>Gizemi</p>
+                <p data-lang-key="gallery_item_4">Gizemi</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(5)">
                 <img src="img/golgelerin_yolcusu.png" alt="Gölgelerin Yolcusu" loading="lazy">
-                <p>Gölgelerin Yolcusu</p>
+                <p data-lang-key="gallery_item_5">Gölgelerin Yolcusu</p>
             </div>
             <div class="gallery-item" data-category="iskandinav" onclick="openLightbox(6)">
                 <img src="img/heimdall.png" alt="Heimdall" loading="lazy">
-                <p>Heimdall</p>
+                <p data-lang-key="gallery_item_6">Heimdall</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(7)">
                 <img src="img/isik_bekcisi.png" alt="Işık Bekçisi" loading="lazy">
-                <p>Işık Bekçisi</p>
+                <p data-lang-key="gallery_item_7">Işık Bekçisi</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(8)">
                 <img src="img/kanli_yemin.png" alt="Kanlı Yemin" loading="lazy">
-                <p>Kanlı Yemin</p>
+                <p data-lang-key="gallery_item_8">Kanlı Yemin</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(9)">
                 <img src="img/kurt.png" alt="Kurt" loading="lazy">
-                <p>Kurt</p>
+                <p data-lang-key="gallery_item_9">Kurt</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(10)">
                 <img src="img/kutsal_orman.png" alt="Kutsal Orman" loading="lazy">
-                <p>Kutsal Orman</p>
+                <p data-lang-key="gallery_item_10">Kutsal Orman</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(11)">
                 <img src="img/mistik.png" alt="Mistik" loading="lazy">
-                <p>Mistik</p>
+                <p data-lang-key="gallery_item_11">Mistik</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(12)">
                 <img src="img/ruzgar_yolcusu.png" alt="Rüzgar Yolcusu" loading="lazy">
-                <p>Rüzgar Yolcusu</p>
+                <p data-lang-key="gallery_item_12">Rüzgar Yolcusu</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(13)">
                 <img src="img/savasci.png" alt="Savaşçı" loading="lazy">
-                <p>Savaşçı</p>
+                <p data-lang-key="gallery_item_13">Savaşçı</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(14)">
                 <img src="img/sessiz_koruyucu.png" alt="Sessiz Koruyucu" loading="lazy">
-                <p>Sessiz Koruyucu</p>
+                <p data-lang-key="gallery_item_14">Sessiz Koruyucu</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(15)">
                 <img src="img/shaman.png" alt="Şaman" loading="lazy">
-                <p>Şaman</p>
+                <p data-lang-key="gallery_item_15">Şaman</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(16)">
                 <img src="img/tanri_dagi.png" alt="Tanrı Dağı" loading="lazy">
-                <p>Tanrı Dağı</p>
+                <p data-lang-key="gallery_item_16">Tanrı Dağı</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(17)">
                 <img src="img/tapinak.png" alt="Tapınak" loading="lazy">
-                <p>Tapınak</p>
+                <p data-lang-key="gallery_item_17">Tapınak</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(18)">
                 <img src="img/yilan.png" alt="Yılan" loading="lazy">
-                <p>Yılan</p>
+                <p data-lang-key="gallery_item_18">Yılan</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(19)">
                 <img src="img/bozkurt.png" alt="Bozkurt" loading="lazy">
-                <p>Bozkurt</p>
+                <p data-lang-key="gallery_item_19">Bozkurt</p>
             </div>
             <div class="gallery-item" data-category="iskandinav" onclick="openLightbox(20)">
                 <img src="img/cekic.png" alt="Çekiç" loading="lazy">
-                <p>Çekiç</p>
+                <p data-lang-key="gallery_item_20">Çekiç</p>
             </div>
             <div class="gallery-item" data-category="iskandinav" onclick="openLightbox(21)">
                 <img src="img/freya.png" alt="Freya" loading="lazy">
-                <p>Freya</p>
+                <p data-lang-key="gallery_item_21">Freya</p>
             </div>
             <div class="gallery-item" data-category="iskandinav" onclick="openLightbox(22)">
                 <img src="img/odin.png" alt="Odin" loading="lazy">
-                <p>Odin</p>
+                <p data-lang-key="gallery_item_22">Odin</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(23)">
                 <img src="img/savasci.png" alt="Savaşçı (Yeni)" loading="lazy">
-                <p>Savaşçı (Yeni)</p>
+                <p data-lang-key="gallery_item_23">Savaşçı (Yeni)</p>
             </div>
             <div class="gallery-item" data-category="turk" onclick="openLightbox(24)">
                 <img src="img/süvari.png" alt="Süvari" loading="lazy">
-                <p>Süvari</p>
+                <p data-lang-key="gallery_item_24">Süvari</p>
             </div>
             <div class="gallery-item" data-category="iskandinav" onclick="openLightbox(25)">
                 <img src="img/thor.png" alt="Thor" loading="lazy">
-                <p>Thor</p>
+                <p data-lang-key="gallery_item_25">Thor</p>
             </div>
         </div>
     </div>
@@ -857,12 +908,12 @@
     <!-- Ses Kontrolü -->
     <audio id="background-audio" loop>
         <source src="sounds/fonmuzigi.mp3" type="audio/mpeg">
-        Tarayıcınız audio etiketini desteklemiyor.
+        <span data-lang-key="audio_error">Tarayıcınız audio etiketini desteklemiyor.</span>
     </audio>
     <div class="audio-control">
-        <button id="audio-toggle" onclick="toggleAudio()">Müziği Çal</button>
+        <button id="audio-toggle" onclick="toggleAudio()" data-lang-key="audio_play">Müziği Çal</button>
     </div>
-    <div class="audio-error" id="audio-error">
+    <div class="audio-error" id="audio-error" data-lang-key="audio_error_message">
         Müzik dosyası bulunamadı veya çalınamıyor. Lütfen dosya yolunu kontrol edin.
     </div>
 
@@ -870,6 +921,231 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <script>
+        // Dil Verileri
+        const translations = {
+            tr: {
+                title: "Fantastik Galeri",
+                nav_home: "Anasayfa",
+                nav_map: "Evrenimiz",
+                nav_contact: "İletişim",
+                nav_gallery: "Galeri",
+                home_title: "Biz Kimiz?",
+                home_description: "Biz, mitoloji ve fantastik dünyaların derinliklerinden ilham alan bir sanat topluluğuyuz. Her bir eserimizde, unutulmuş hikayeleri ve güçlü karakterleri hayata geçiriyoruz. Amacımız, izleyicilerimize hem görsel hem de duygusal bir yolculuk sunmak. Efsanelerin ve hayallerin buluştuğu bu dünyada, her birimiz birer hikaye anlatıcısıyız.",
+                carousel_1: "Bozkır Vadisi: Ataların Laneti",
+                carousel_2: "Demir Kalp: İntikam Yemini",
+                carousel_3: "Geceye Koşusan: Gölge Avcısı",
+                carousel_4: "Heimdall: Göklerin Bekçisi",
+                carousel_5: "Kanlı Yemin: Savaş Lordu",
+                home_button: "Galeriye Göz At",
+                map_title: "Evrenimizin Haritası",
+                contact_title: "İletişim",
+                contact_name_label: "Adınız",
+                contact_name_placeholder: "Adınızı girin",
+                contact_email_label: "E-posta Adresiniz",
+                contact_email_placeholder: "E-posta adresinizi girin",
+                contact_message_label: "Mesajınız",
+                contact_message_placeholder: "Mesajınızı yazın",
+                contact_submit: "Mesaj Gönder",
+                contact_alternative: "Alternatif olarak, aşağıdaki bilgileri kullanarak da bizimle iletişime geçebilirsiniz:",
+                gallery_title: "Görsel Galeri",
+                gallery_filter_all: "Tümü",
+                gallery_filter_turk: "Türk Mitolojisi",
+                gallery_filter_iskandinav: "İskandinav Mitolojisi",
+                gallery_item_0: "Bozkır Vadisi",
+                gallery_item_1: "Deli",
+                gallery_item_2: "Demir Kalp",
+                gallery_item_3: "Geceye Koşusan",
+                gallery_item_4: "Gizemi",
+                gallery_item_5: "Gölgelerin Yolcusu",
+                gallery_item_6: "Heimdall",
+                gallery_item_7: "Işık Bekçisi",
+                gallery_item_8: "Kanlı Yemin",
+                gallery_item_9: "Kurt",
+                gallery_item_10: "Kutsal Orman",
+                gallery_item_11: "Mistik",
+                gallery_item_12: "Rüzgar Yolcusu",
+                gallery_item_13: "Savaşçı",
+                gallery_item_14: "Sessiz Koruyucu",
+                gallery_item_15: "Şaman",
+                gallery_item_16: "Tanrı Dağı",
+                gallery_item_17: "Tapınak",
+                gallery_item_18: "Yılan",
+                gallery_item_19: "Bozkurt",
+                gallery_item_20: "Çekiç",
+                gallery_item_21: "Freya",
+                gallery_item_22: "Odin",
+                gallery_item_23: "Savaşçı (Yeni)",
+                gallery_item_24: "Süvari",
+                gallery_item_25: "Thor",
+                lightbox_0: "Bozkır Vadisi'nde yaşayan bir savaşçı, atalarının ruhlarıyla konuşarak kayıp bir hazineyi arar. Ancak vadi, karanlık bir lanetle doludur ve her adımda onu sınar.",
+                lightbox_1: "Deli, savaş meydanlarında aklını yitirmiş bir asker. Kılıcıyla konuşur ve düşmanlarının korkulu rüyasıdır. Ama içindeki boşluk, onu bir gün kendi sonuna sürükler.",
+                lightbox_2: "Demir Kalp, sevgisini kaybettiği gün ruhunu çeliğe hapsetti. Artık ne korku ne de acı hisseder, sadece intikam için savaşır.",
+                lightbox_3: "Geceye Koşusan, ay ışığında avlanan bir gölge avcısıdır. Karanlıkta saklanan kötülükleri bulup yok eder, ama kendi geçmişi onu her zaman takip eder.",
+                lightbox_4: "Gizemi, eski bir kehanetin koruyucusu. Yüzünü kimse görmemiştir, çünkü görenler onun sırrını çözmek için hayatını feda eder.",
+                lightbox_5: "Gölgelerin Yolcusu, iki dünya arasında sıkışmış bir ruh. Gölgelerde saklanarak unutulmuş bir tapınağın anahtarını arar.",
+                lightbox_6: "Heimdall, göklerin bekçisi. Tanrıların köprüsünü korur ve yaklaşan kıyameti görmek için her zaman tetiktedir.",
+                lightbox_7: "Işık Bekçisi, karanlık bir çağda umudu temsil eder. Elindeki fenerle kaybolmuş ruhlara yol gösterir, ama kendi yolunu bulmakta zorlanır.",
+                lightbox_8: "Kanlı Yemin, bir savaş lordunun intikam yemini. Yeminini yerine getirene kadar ne dinlenir ne de merhamet gösterir.",
+                lightbox_9: "Kurt, vahşi ormanlarda yalnız bir avcı. İnsanlardan uzak durur, ama bir gün bir çocuğun hayatını kurtararak kaderini değiştirir.",
+                lightbox_10: "Kutsal Orman'ın koruyucusu, doğanın ruhlarıyla iletişim kurar. Ormanı tehdit eden herkesi affetmez, ama kendi yalnızlığı onun en büyük düşmanıdır.",
+                lightbox_11: "Mistik, eski bir büyücünün öğrencisi. Elementlerin gücünü kontrol eder, ama her büyü ona biraz daha insanlığını kaybettirir.",
+                lightbox_12: "Rüzgar Yolcusu, özgürlüğüne aşık bir gezgin. Rüzgarın fısıldadığı sırları dinler ve her zaman bir sonraki ufka koşar.",
+                lightbox_13: "Savaşçı, onur için yaşar ve ölür. Kılıcı, ailesinin mirasıdır ve onu asla yere düşürmez.",
+                lightbox_14: "Sessiz Koruyucu, tapınakların gölgesinde nöbet tutar. Hiç konuşmaz, ama gözleri her şeyi görür.",
+                lightbox_15: "Şaman, ruhlar dünyasıyla bağlantı kurar. Doğa ona güç verir, ama bu güç bazen onu kontrol eder.",
+                lightbox_16: "Tanrı Dağı'nda yaşayan bir bilge, tanrıların gazabından kaçanlara sığınak sunar. Ama dağın sırrını çözmek için gelenler, genellikle kaybolur.",
+                lightbox_17: "Tapınak, unutulmuş bir medeniyetin kalıntısı. İçindeki sırlar, sadece en cesur kaşifler tarafından keşfedilebilir.",
+                lightbox_18: "Yılan, zehirli bir lanetin taşıyıcısı. Her gece avlanır ve kurbanlarının korkularını kendi gücüne çevirir.",
+                lightbox_19: "Bozkurt, göklerin ulu ruhu. Eski Türk mitlerinde kutsal bir rehber olarak bilinir ve savaşçılara yol gösterir.",
+                lightbox_20: "Çekiç, Thor'un efsanevi silahı Mjölnir'i temsil eder. Gökyüzünden yıldırım çağırır ve yalnızca en layık olanlar tarafından kaldırılabilir.",
+                lightbox_21: "Freya, aşk ve güzellik tanrıçası. Savaşta düşen kahramanların ruhlarını Valhalla'ya taşır ve sihirli bir kolyenin sahibidir.",
+                lightbox_22: "Odin, bilgelik tanrısı. Tek gözünü feda ederek evrenin sırlarını öğrendi ve iki kuzgunuyla dünyayı izler.",
+                lightbox_23: "Savaşçı (Yeni), karanlık bir ormanda büyümüş bir kahraman. Kılıcı, eski bir ejderhanın kemiklerinden yapılmıştır ve lanetli bir geçmiş taşır.",
+                lightbox_24: "Süvari, gölgelerde at süren bir savaşçı. Düşmanlarını yıldırım hızıyla avlar ve asla iz bırakmaz.",
+                lightbox_25: "Thor, gök gürültüsü tanrısı. Çekici Mjölnir ile devleri alt eder ve Asgard'ın en güçlü koruyucusudur.",
+                audio_play: "Müziği Çal",
+                audio_stop: "Müziği Durdur",
+                audio_error: "Tarayıcınız audio etiketini desteklemiyor.",
+                audio_error_message: "Müzik dosyası bulunamadı veya çalınamıyor. Lütfen dosya yolunu kontrol edin.",
+                form_success: "Mesajınız başarıyla gönderildi! En kısa sürede size geri döneceğiz.",
+                form_error_required: "Lütfen tüm alanları doldurun.",
+                form_error_email: "Lütfen geçerli bir e-posta adresi girin."
+            },
+            en: {
+                title: "Fantastic Gallery",
+                nav_home: "Home",
+                nav_map: "Our Universe",
+                nav_contact: "Contact",
+                nav_gallery: "Gallery",
+                home_title: "Who Are We?",
+                home_description: "We are an art community inspired by the depths of mythology and fantastical worlds. In each of our works, we bring forgotten stories and powerful characters to life. Our goal is to offer our audience both a visual and emotional journey. In this world where legends and dreams meet, each of us is a storyteller.",
+                carousel_1: "Bozkır Vadisi: Curse of the Ancestors",
+                carousel_2: "Demir Kalp: Oath of Vengeance",
+                carousel_3: "Geceye Koşusan: Shadow Hunter",
+                carousel_4: "Heimdall: Guardian of the Skies",
+                carousel_5: "Kanlı Yemin: War Lord",
+                home_button: "Explore the Gallery",
+                map_title: "Map of Our Universe",
+                contact_title: "Contact",
+                contact_name_label: "Your Name",
+                contact_name_placeholder: "Enter your name",
+                contact_email_label: "Your Email Address",
+                contact_email_placeholder: "Enter your email address",
+                contact_message_label: "Your Message",
+                contact_message_placeholder: "Write your message",
+                contact_submit: "Send Message",
+                contact_alternative: "Alternatively, you can reach us using the information below:",
+                gallery_title: "Visual Gallery",
+                gallery_filter_all: "All",
+                gallery_filter_turk: "Turkish Mythology",
+                gallery_filter_iskandinav: "Norse Mythology",
+                gallery_item_0: "Bozkır Vadisi",
+                gallery_item_1: "Deli",
+                gallery_item_2: "Demir Kalp",
+                gallery_item_3: "Geceye Koşusan",
+                gallery_item_4: "Gizemi",
+                gallery_item_5: "Gölgelerin Yolcusu",
+                gallery_item_6: "Heimdall",
+                gallery_item_7: "Işık Bekçisi",
+                gallery_item_8: "Kanlı Yemin",
+                gallery_item_9: "Kurt",
+                gallery_item_10: "Kutsal Orman",
+                gallery_item_11: "Mistik",
+                gallery_item_12: "Rüzgar Yolcusu",
+                gallery_item_13: "Savaşçı",
+                gallery_item_14: "Sessiz Koruyucu",
+                gallery_item_15: "Şaman",
+                gallery_item_16: "Tanrı Dağı",
+                gallery_item_17: "Tapınak",
+                gallery_item_18: "Yılan",
+                gallery_item_19: "Bozkurt",
+                gallery_item_20: "Çekiç",
+                gallery_item_21: "Freya",
+                gallery_item_22: "Odin",
+                gallery_item_23: "Savaşçı (New)",
+                gallery_item_24: "Süvari",
+                gallery_item_25: "Thor",
+                lightbox_0: "A warrior living in Bozkır Vadisi searches for a lost treasure by speaking with the spirits of their ancestors. However, the valley is filled with a dark curse, testing them at every step.",
+                lightbox_1: "Deli, a soldier who lost their sanity on the battlefield. They speak to their sword and are the nightmare of their enemies. But the emptiness within leads them to their own end one day.",
+                lightbox_2: "Demir Kalp locked their soul in steel the day they lost their love. Now they feel neither fear nor pain, fighting only for vengeance.",
+                lightbox_3: "Geceye Koşusan, a shadow hunter who hunts under moonlight. They find and destroy evil hiding in the dark, but their past always follows them.",
+                lightbox_4: "Gizemi, the guardian of an ancient prophecy. No one has seen their face, for those who do sacrifice their lives to unravel their secret.",
+                lightbox_5: "Gölgelerin Yolcusu, a soul trapped between two worlds. They hide in the shadows, seeking the key to a forgotten temple.",
+                lightbox_6: "Heimdall, the guardian of the skies. They protect the bridge of the gods and are always vigilant for the coming apocalypse.",
+                lightbox_7: "Işık Bekçisi represents hope in a dark age. They guide lost souls with their lantern but struggle to find their own path.",
+                lightbox_8: "Kanlı Yemin, a warlord's oath of vengeance. They neither rest nor show mercy until their oath is fulfilled.",
+                lightbox_9: "Kurt, a lone hunter in the wild forests. They stay away from humans but change their fate by saving a child's life one day.",
+                lightbox_10: "The guardian of Kutsal Orman communicates with the spirits of nature. They do not forgive those who threaten the forest, but their greatest enemy is their own loneliness.",
+                lightbox_11: "Mistik, a student of an ancient sorcerer. They control the power of the elements, but each spell costs them a piece of their humanity.",
+                lightbox_12: "Rüzgar Yolcusu, a traveler in love with freedom. They listen to the whispers of the wind and always run toward the next horizon.",
+                lightbox_13: "Savaşçı lives and dies for honor. Their sword is their family's legacy, and they never let it fall.",
+                lightbox_14: "Sessiz Koruyucu stands guard in the shadows of temples. They never speak, but their eyes see everything.",
+                lightbox_15: "Şaman connects with the spirit world. Nature grants them power, but sometimes that power controls them.",
+                lightbox_16: "A wise one living in Tanrı Dağı offers refuge to those escaping the wrath of the gods. But those who come to unravel the mountain's secret usually get lost.",
+                lightbox_17: "Tapınak, the ruins of a forgotten civilization. Its secrets can only be uncovered by the bravest explorers.",
+                lightbox_18: "Yılan, the bearer of a venomous curse. They hunt every night, turning their victims' fears into their own power.",
+                lightbox_19: "Bozkurt, the sacred spirit of the skies. Known as a holy guide in ancient Turkish myths, they lead warriors on their path.",
+                lightbox_20: "Çekiç represents Thor's legendary weapon, Mjölnir. It summons lightning from the sky and can only be wielded by the worthy.",
+                lightbox_21: "Freya, the goddess of love and beauty. She carries the souls of fallen heroes to Valhalla and possesses a magical necklace.",
+                lightbox_22: "Odin, the god of wisdom. He sacrificed one eye to learn the secrets of the universe and watches the world with his two ravens.",
+                lightbox_23: "Savaşçı (New), a hero raised in a dark forest. Their sword, made from the bones of an ancient dragon, carries a cursed past.",
+                lightbox_24: "Süvari, a warrior riding through the shadows. They hunt their enemies with lightning speed and never leave a trace.",
+                lightbox_25: "Thor, the god of thunder. With his hammer Mjölnir, he defeats giants and is Asgard's mightiest protector.",
+                audio_play: "Play Music",
+                audio_stop: "Stop Music",
+                audio_error: "Your browser does not support the audio tag.",
+                audio_error_message: "Music file not found or cannot be played. Please check the file path.",
+                form_success: "Your message has been successfully sent! We will get back to you soon.",
+                form_error_required: "Please fill in all fields.",
+                form_error_email: "Please enter a valid email address."
+            }
+        };
+
+        // Dil Değiştirme Fonksiyonu
+        function changeLanguage(lang) {
+            // Dil tercihini localStorage'a kaydet
+            localStorage.setItem('language', lang);
+
+            // HTML lang attribute'unu güncelle
+            document.documentElement.lang = lang;
+
+            // Dil butonlarının aktif sınıfını güncelle
+            document.querySelectorAll('.language-switcher button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === (lang === 'tr' ? 'TR' : 'EN')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Tüm metinleri güncelle
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                element.textContent = translations[lang][key];
+            });
+
+            // Placeholder'ları güncelle
+            document.querySelectorAll('[data-lang-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-lang-placeholder');
+                element.placeholder = translations[lang][key];
+            });
+
+            // Ses kontrol butonunu güncelle
+            const audioToggle = document.getElementById('audio-toggle');
+            audioToggle.textContent = isPlaying ? translations[lang].audio_stop : translations[lang].audio_play;
+
+            // Form mesajını güncelle (eğer görünüyorsa)
+            const formMessage = document.getElementById('form-message');
+            if (formMessage.style.display === 'block') {
+                formMessage.textContent = translations[lang][formMessage.dataset.lastMessage];
+            }
+        }
+
+        // Sayfa yüklendiğinde dil tercihini kontrol et
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('language') || 'tr';
+            changeLanguage(savedLang);
+        });
+
         // Sayfa Değiştirme
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
@@ -877,7 +1153,6 @@
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
-            // Galeri sayfasına geçişte filtreyi sıfırla
             if (pageId === 'gallery') {
                 filterGallery('all');
             }
@@ -926,42 +1201,14 @@
             "img/thor.png"
         ];
 
-        const stories = [
-            "Bozkır Vadisi'nde yaşayan bir savaşçı, atalarının ruhlarıyla konuşarak kayıp bir hazineyi arar. Ancak vadi, karanlık bir lanetle doludur ve her adımda onu sınar.",
-            "Deli, savaş meydanlarında aklını yitirmiş bir asker. Kılıcıyla konuşur ve düşmanlarının korkulu rüyasıdır. Ama içindeki boşluk, onu bir gün kendi sonuna sürükler.",
-            "Demir Kalp, sevgisini kaybettiği gün ruhunu çeliğe hapsetti. Artık ne korku ne de acı hisseder, sadece intikam için savaşır.",
-            "Geceye Koşusan, ay ışığında avlanan bir gölge avcısıdır. Karanlıkta saklanan kötülükleri bulup yok eder, ama kendi geçmişi onu her zaman takip eder.",
-            "Gizemi, eski bir kehanetin koruyucusu. Yüzünü kimse görmemiştir, çünkü görenler onun sırrını çözmek için hayatını feda eder.",
-            "Gölgelerin Yolcusu, iki dünya arasında sıkışmış bir ruh. Gölgelerde saklanarak unutulmuş bir tapınağın anahtarını arar.",
-            "Heimdall, göklerin bekçisi. Tanrıların köprüsünü korur ve yaklaşan kıyameti görmek için her zaman tetiktedir.",
-            "Işık Bekçisi, karanlık bir çağda umudu temsil eder. Elindeki fenerle kaybolmuş ruhlara yol gösterir, ama kendi yolunu bulmakta zorlanır.",
-            "Kanlı Yemin, bir savaş lordunun intikam yemini. Yeminini yerine getirene kadar ne dinlenir ne de merhamet gösterir.",
-            "Kurt, vahşi ormanlarda yalnız bir avcı. İnsanlardan uzak durur, ama bir gün bir çocuğun hayatını kurtararak kaderini değiştirir.",
-            "Kutsal Orman'ın koruyucusu, doğanın ruhlarıyla iletişim kurar. Ormanı tehdit eden herkesi affetmez, ama kendi yalnızlığı onun en büyük düşmanıdır.",
-            "Mistik, eski bir büyücünün öğrencisi. Elementlerin gücünü kontrol eder, ama her büyü ona biraz daha insanlığını kaybettirir.",
-            "Rüzgar Yolcusu, özgürlüğüne aşık bir gezgin. Rüzgarın fısıldadığı sırları dinler ve her zaman bir sonraki ufka koşar.",
-            "Savaşçı, onur için yaşar ve ölür. Kılıcı, ailesinin mirasıdır ve onu asla yere düşürmez.",
-            "Sessiz Koruyucu, tapınakların gölgesinde nöbet tutar. Hiç konuşmaz, ama gözleri her şeyi görür.",
-            "Şaman, ruhlar dünyasıyla bağlantı kurar. Doğa ona güç verir, ama bu güç bazen onu kontrol eder.",
-            "Tanrı Dağı'nda yaşayan bir bilge, tanrıların gazabından kaçanlara sığınak sunar. Ama dağın sırrını çözmek için gelenler, genellikle kaybolur.",
-            "Tapınak, unutulmuş bir medeniyetin kalıntısı. İçindeki sırlar, sadece en cesur kaşifler tarafından keşfedilebilir.",
-            "Yılan, zehirli bir lanetin taşıyıcısı. Her gece avlanır ve kurbanlarının korkularını kendi gücüne çevirir.",
-            "Bozkurt, göklerin ulu ruhu. Eski Türk mitlerinde kutsal bir rehber olarak bilinir ve savaşçılara yol gösterir.",
-            "Çekiç, Thor'un efsanevi silahı Mjölnir'i temsil eder. Gökyüzünden yıldırım çağırır ve yalnızca en layık olanlar tarafından kaldırılabilir.",
-            "Freya, aşk ve güzellik tanrıçası. Savaşta düşen kahramanların ruhlarını Valhalla'ya taşır ve sihirli bir kolyenin sahibidir.",
-            "Odin, bilgelik tanrısı. Tek gözünü feda ederek evrenin sırlarını öğrendi ve iki kuzgunuyla dünyayı izler.",
-            "Savaşçı (Yeni), karanlık bir ormanda büyümüş bir kahraman. Kılıcı, eski bir ejderhanın kemiklerinden yapılmıştır ve lanetli bir geçmiş taşır.",
-            "Süvari, gölgelerde at süren bir savaşçı. Düşmanlarını yıldırım hızıyla avlar ve asla iz bırakmaz.",
-            "Thor, gök gürültüsü tanrısı. Çekici Mjölnir ile devleri alt eder ve Asgard'ın en güçlü koruyucusudur."
-        ];
-
         function openLightbox(index) {
             lightboxIndex = index;
             const lightbox = document.getElementById("lightbox");
             const lightboxImg = document.getElementById("lightbox-img");
             const lightboxStory = document.getElementById("lightbox-story");
+            const lang = localStorage.getItem('language') || 'tr';
             lightboxImg.src = images[lightboxIndex];
-            lightboxStory.textContent = stories[lightboxIndex];
+            lightboxStory.textContent = translations[lang][`lightbox_${lightboxIndex}`];
             lightbox.style.display = "flex";
         }
 
@@ -982,8 +1229,9 @@
             }
             const lightboxImg = document.getElementById("lightbox-img");
             const lightboxStory = document.getElementById("lightbox-story");
+            const lang = localStorage.getItem('language') || 'tr';
             lightboxImg.src = images[lightboxIndex];
-            lightboxStory.textContent = stories[lightboxIndex];
+            lightboxStory.textContent = translations[lang][`lightbox_${lightboxIndex}`];
         }
 
         // Galeri Filtreleme
@@ -991,11 +1239,9 @@
             const items = document.querySelectorAll('.gallery-item');
             const buttons = document.querySelectorAll('.filter-btn');
 
-            // Butonların aktif sınıfını güncelle
             buttons.forEach(btn => btn.classList.remove('active'));
             document.querySelector(`button[onclick="filterGallery('${category}')"]`).classList.add('active');
 
-            // Galeri öğelerini filtrele
             items.forEach(item => {
                 if (category === 'all' || item.getAttribute('data-category') === category) {
                     item.classList.remove('hidden');
@@ -1012,14 +1258,15 @@
         let isPlaying = false;
 
         function toggleAudio() {
+            const lang = localStorage.getItem('language') || 'tr';
             if (isPlaying) {
                 audio.pause();
-                audioToggle.textContent = 'Müziği Çal';
+                audioToggle.textContent = translations[lang].audio_play;
             } else {
                 audio.play().then(() => {
-                    audioToggle.textContent = 'Müziği Durdur';
+                    audioToggle.textContent = translations[lang].audio_stop;
                 }).catch(error => {
-                    console.error("Müzik çalma hatası:", error);
+                    console.error("Music playback error:", error);
                     audioError.style.display = 'block';
                     setTimeout(() => {
                         audioError.style.display = 'none';
@@ -1040,41 +1287,38 @@
         function handleFormSubmit(event) {
             event.preventDefault();
 
+            const lang = localStorage.getItem('language') || 'tr';
             const form = document.getElementById('contact-form');
             const formMessage = document.getElementById('form-message');
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
 
-            // Basit Doğrulama
             if (!name || !email || !message) {
-                formMessage.textContent = 'Lütfen tüm alanları doldurun.';
+                formMessage.textContent = translations[lang].form_error_required;
                 formMessage.classList.remove('success');
                 formMessage.classList.add('error');
                 formMessage.style.display = 'block';
+                formMessage.dataset.lastMessage = 'form_error_required';
                 return false;
             }
 
-            // E-posta Format Doğrulaması (Basit)
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(email)) {
-                formMessage.textContent = 'Lütfen geçerli bir e-posta adresi girin.';
+                formMessage.textContent = translations[lang].form_error_email;
                 formMessage.classList.remove('success');
                 formMessage.classList.add('error');
                 formMessage.style.display = 'block';
+                formMessage.dataset.lastMessage = 'form_error_email';
                 return false;
             }
 
-            // Formu Temizle ve Onay Mesajı Göster
-            formMessage.textContent = 'Mesajınız başarıyla gönderildi! En kısa sürede size geri döneceğiz.';
+            formMessage.textContent = translations[lang].form_success;
             formMessage.classList.remove('error');
             formMessage.classList.add('success');
             formMessage.style.display = 'block';
+            formMessage.dataset.lastMessage = 'form_success';
             form.reset();
-
-            // Backend Entegrasyonu Gerekiyor
-            // Şu anda form verileri bir sunucuya gönderilmiyor.
-            // Verileri göndermek için bir backend (örneğin PHP, Node.js) veya bir hizmet (örneğin Formspree, EmailJS) kullanabilirsiniz.
 
             return false;
         }
