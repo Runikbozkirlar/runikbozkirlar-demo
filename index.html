@@ -139,51 +139,63 @@
 </style>
 </head>
 <body class="bg-black text-white" onclick="closeModal(event)">
-<nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 z-50 flex flex-wrap justify-center gap-4 py-4 px-4 md:space-x-12 md:py-6 border-b border-gray-700 text-base md:text-lg">
-<a class="btn-primary" href="#hero">Anasayfa</a>
-<a class="btn-primary" href="#gallery">Galeri</a>
-<a class="btn-primary" href="#about-contact-combined">Hakkımda & İletişim</a>
+
+<nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 z-50 border-b border-gray-700 text-sm md:text-base">
+  <div class="max-w-screen-lg mx-auto px-4 py-4 flex items-center justify-center">
+    <div class="flex gap-4 md:gap-8 items-center justify-center">
+      <a class="btn-primary" href="#hero">Runik Bozkırlar</a>
+      <button id="audioToggleBtn" class="w-10 h-10 rounded-full bg-black bg-opacity-50 border border-yellow-500 text-yellow-300 hover:text-white flex items-center justify-center text-lg shadow-md transition-colors">
+        🎵
+      </button>
+      <a class="btn-primary" href="#gallery">Galeri</a>
+      <a class="btn-primary" href="#contact">Hakkımda & İletişim</a>
+    </div>
+  </div>
 </nav>
 
+
 <section class="scroll-mt-32 min-h-screen flex flex-col justify-center items-center text-center px-4 md:px-0 pt-24 md:pt-32 relative" id="hero" style="background-image: url('images/hero_bg_full.png'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
-<div class="section-overlay"></div> <div class="p-10 rounded-xl animate-fade-in w-full max-w-7xl h-full flex flex-col justify-center items-center relative z-10">
-<h1 class="text-5xl md:text-7xl font-bold mb-4 text-yellow-300 drop-shadow-lg">Runik Bozkırlar</h1>
-<p class="text-lg md:text-xl text-gray-300">Türk ve İskandinav mitolojilerinin sinematik ve karanlık buluşması</p>
-<p class="text-md mt-4 text-gray-400 italic">“Geçmişin rüzgarlarında, rün taşlarına kazınmış bir hikaye başlıyor...”</p>
+  <div class="section-overlay"></div>
+  <div class="p-10 rounded-xl animate-fade-in w-full max-w-4xl h-full flex flex-col justify-center items-center relative z-10 mx-auto">
 
-<div id="hero-carousel" class="relative w-full max-w-4xl mx-auto mt-8 mb-8 overflow-hidden rounded-xl shadow-lg flex-grow flex items-center justify-center">
-    <div id="carousel-inner" class="flex transition-transform duration-700 ease-in-out h-full w-full">
-        <img src="images/gizemli.png" alt="Carousel Image 1" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
-        <img src="images/savasci.png" alt="Carousel Image 2" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
-        <img src="images/erlik.png" alt="Carousel Image 3" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
-        <img src="images/kurt.png" alt="Carousel Image 4" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
-    </div>
+    <h1 class="text-5xl md:text-7xl font-bold mb-4 text-yellow-300 drop-shadow-lg text-center mx-auto w-full">Runik Bozkırlar</h1>
 
-    <button id="carousel-prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black bg-opacity-50 text-yellow-300 text-3xl p-2 rounded-full hover:bg-opacity-80 hover:text-white transition-all duration-300 focus:outline-none">
-        &#10094;
-    </button>
-    <button id="carousel-next" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black bg-opacity-50 text-yellow-300 text-3xl p-2 rounded-full hover:bg-opacity-80 hover:text-white transition-all duration-300 focus:outline-none">
-        &#10095;
-    </button>
+    <p class="text-lg md:text-xl text-gray-300">Türk ve İskandinav mitolojilerinin sinematik ve karanlık buluşması</p>
+    <p class="text-md mt-4 text-gray-400 italic">“Geçmişin rüzgarlarında, rün taşlarına kazınmış bir hikaye başlıyor...”</p>
 
-    <div id="carousel-indicators" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+    <div id="hero-carousel" class="relative w-full max-w-4xl mx-auto mt-8 mb-8 overflow-hidden rounded-xl shadow-lg flex-grow flex items-center justify-center">
+        <div id="carousel-inner" class="flex transition-transform duration-700 ease-in-out h-full w-full">
+            <img src="images/gizemli.png" alt="Carousel Image 1" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
+            <img src="images/savasci.png" alt="Carousel Image 2" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
+            <img src="images/erlik.png" alt="Carousel Image 3" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
+            <img src="images/kurt.png" alt="Carousel Image 4" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
         </div>
-</div>
-<div class="mt-10 text-gray-300 text-lg leading-relaxed max-w-prose mx-auto">
-<p>
-        Runik Bozkırlar, kadim Türk ve İskandinav mitolojilerini bir araya getiren mistik bir evrendir. 
-        Bu dünya; rün taşları, kurt figürleri, kadim tanrılar ve efsanevi yaratıklarla bezenmiş, geçmişin 
-        gölgeleriyle modern çağın estetiğini harmanlar. Her sahne, bilinmeyen diyarlardan yankılanan bir hikâyeyi anlatır. 
-        Bu evrende, bozkırın rüzgarlarıyla fısıldayan seslere kulak ver ve unutulmuş bilgeliğe doğru bir yolculuğa çık.
-      </p>
-<br/><p>Burada geçen hikâyeler, yalnızca mitlerin değil, duyguların da dilini konuşur. Her taşın altında bir sır, her gölgenin ardında bir geçmiş saklıdır. Runik Bozkırlar evreni, sadece bir görsel şölen değil; aynı zamanda ruhani bir keşiftir.</p></div>
-<a class="btn-primary mt-10" href="#gallery">
-      Galeriyi Keşfet
-    </a>
-<a class="btn-secondary mt-6" href="https://x.com/RunikBozkirlar" target="_blank">
-       X Hesabımızı Ziyaret Et
-    </a>
-</div>
+
+        <button id="carousel-prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black bg-opacity-50 text-yellow-300 text-3xl p-2 rounded-full hover:bg-opacity-80 hover:text-white transition-all duration-300 focus:outline-none">
+            &#10094;
+        </button>
+        <button id="carousel-next" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black bg-opacity-50 text-yellow-300 text-3xl p-2 rounded-full hover:bg-opacity-80 hover:text-white transition-all duration-300 focus:outline-none">
+            &#10095;
+        </button>
+
+        <div id="carousel-indicators" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+            </div>
+    </div>
+    <div class="mt-10 text-gray-300 text-lg leading-relaxed max-w-prose mx-auto">
+    <p>
+            Runik Bozkırlar, kadim Türk ve İskandinav mitolojilerini bir araya getiren mistik bir evrendir. 
+            Bu dünya; rün taşları, kurt figürleri, kadim tanrılar ve efsanevi yaratıklarla bezenmiş, geçmişin 
+            gölgeleriyle modern çağın estetiğini harmanlar. Her sahne, bilinmeyen diyarlardan yankılanan bir hikâyeyi anlatır. 
+            Bu evrende, bozkırın rüzgarlarıyla fısıldayan seslere kulak ver ve unutulmuş bilgeliğe doğru bir yolculuğa çık.
+          </p>
+    <br/><p>Burada geçen hikâyeler, yalnızca mitlerin değil, duyguların da dilini konuşur. Her taşın altında bir sır, her gölgenin ardında bir geçmiş saklıdır. Runik Bozkırlar evreni, sadece bir görsel şölen değil; aynı zamanda ruhani bir keşiftir.</p></div>
+    <a class="btn-primary mt-10" href="#gallery">
+          Galeriyi Keşfet
+        </a>
+    <a class="btn-secondary mt-6" href="https://x.com/RunikBozkirlar" target="_blank">
+           X Hesabımızı Ziyaret Et
+        </a>
+  </div>
 </section>
 <section class="py-20 px-4 md:px-16 relative" id="gallery" style="background-image: url('images/hero_bg_full.png'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
 <div class="section-overlay"></div> <h2 class="text-4xl mb-12 text-center border-b border-gray-700 pb-4 relative z-10">Mitolojik Galeri</h2>
@@ -295,12 +307,6 @@
     © 2025 Runik Bozkırlar. Tüm hakları saklıdır.
   </footer>
 
-<div id="audioControl" class="fixed top-20 left-4 z-50 p-2 bg-black bg-opacity-60 rounded-full shadow-md border border-yellow-500 flex items-center space-x-2 text-sm md:text-base">
-  <button id="audioToggleBtn" class="text-yellow-300 hover:text-white transition-colors px-2">
-    🎵
-  </button>
-  <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5" class="w-24 h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer hidden md:block">
-</div>
 <div class="fixed bottom-4 right-4 z-50">
   <a href="#hero" class="btn-primary text-lg flex items-center space-x-2">
     <span>🏠</span>
@@ -317,31 +323,30 @@
 window.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById("bg-music");
   const audioToggleBtn = document.getElementById("audioToggleBtn");
-  const volumeSlider = document.getElementById("volumeSlider");
 
   // İlk açılışta sesi %50 olarak ayarla
-  audio.volume = volumeSlider.value;
+  if (audio) {
+    audio.volume = 0.5; // Default volume to 50%
+  }
+  
+  if (audioToggleBtn) {
+    audioToggleBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().then(() => {
+          audioToggleBtn.textContent = "🔇 Müziği Durdur";
+        }).catch(e => {
+          console.error("Müzik başlatılamadı:", e);
+        });
+      } else {
+        audio.pause();
+        audioToggleBtn.textContent = "🎵 Müziği Başlat";
+      }
+    });
 
-  audioToggleBtn.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play().then(() => {
-        audioToggleBtn.textContent = "🔇 Müziği Durdur";
-      }).catch(e => {
-        console.error("Müzik başlatılamadı:", e);
-      });
-    } else {
-      audio.pause();
-      audioToggleBtn.textContent = "🎵 Müziği Başlat";
-    }
-  });
-
-  volumeSlider.addEventListener('input', (event) => {
-    audio.volume = event.target.value;
-  });
-
-  // Sesin başka bir yerden çalınması/durdurulması durumunda buton metnini güncelle
-  audio.onplay = () => { audioToggleBtn.textContent = "🔇 Müziği Durdur"; };
-  audio.onpause = () => { audioToggleBtn.textContent = "🎵 Müziği Başlat"; };
+    // Sesin başka bir yerden çalınması/durdurulması durumunda buton metnini güncelle
+    audio.onplay = () => { audioToggleBtn.textContent = "🔇 Müziği Durdur"; };
+    audio.onpause = () => { audioToggleBtn.textContent = "🎵 Müziği Başlat"; };
+  }
 });
 
 
