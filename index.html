@@ -34,42 +34,53 @@
 
     /* Primary Button Styles */
     .btn-primary {
-      /* Tailwind gradyanı ve arka plan rengini kaldırıp resim ekliyoruz */
-      @apply inline-flex items-center justify-center text-black font-bold px-7 py-3.5 rounded-full shadow-xl transition-all duration-300 ease-in-out;
-      background-image: url('icons/icons.png'); /* Kendi ikon resminizi buraya ekleyin */
-      background-size: contain; /* Resmi butonun tamamına yay yerine orantılı olarak sığdır */
-      background-position: center; /* Resmi ortala */
-      background-repeat: no-repeat; /* Resmi tekrar etme */
-      /* border: 1px solid rgba(252, 210, 31, 0.6); ARTIK YOK */
-      transform: translateY(0); /* Initial state for animation */
-      text-shadow: 0 1px 2px rgba(0,0,0,0.4); /* Metne daha koyu gölge */
-      color: #FFF; /* Metin rengini beyaza çevir, resmin üzerinde daha net durabilir */
+      @apply inline-flex items-center justify-center font-bold px-8 py-4 rounded-full transition-all duration-300 ease-in-out; /* px-7 py-3.5 -> px-8 py-4 */
+      background-image: url('icons/icons.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: translateY(0);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      
+      /* Styles similar to music button */
+      color: #facc15; /* text-yellow-300 */
+      border: 1px solid #eab308; /* border-yellow-500 */
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+      
+      /* Explicitly ensure full rounding */
+      border-radius: 9999px; 
     }
     .btn-primary:hover {
-      /* Hover'da arka plan resmini hafifçe büyüt veya başka bir efekti uygula */
-      background-size: 110%; /* Hover'da hafif büyütme */
-      transform: translateY(-3px) scale(1.01); /* Hafif kalkma ve büyüme */
-      box-shadow: 0 10px 20px rgba(252, 210, 31, 0.4), 0 0 30px rgba(252, 210, 31, 0.2); /* Daha belirgin ve yaygın gölge */
-      letter-spacing: 1px; /* Hover'da harf aralığı artırma */
+      background-size: 110%;
+      transform: translateY(-3px) scale(1.01);
+      /* Adjusted box-shadow for a consistent yellow glow */
+      box-shadow: 0 8px 15px rgba(252, 210, 31, 0.3), 0 0 20px rgba(252, 210, 31, 0.1);
+      letter-spacing: 1px;
+      color: #FFF; /* hover:text-white */
     }
 
     /* Secondary Button Styles */
     .btn-secondary {
-      @apply inline-flex items-center justify-center text-yellow-300 px-7 py-3.5 rounded-full transition-all duration-300 ease-in-out; /* Şeffaf arka plan, daha kalın kenarlık */
-      /* border-2 border-yellow-500; ARTIK YOK - Tailwind'den de kaldırıldı */
-      background-image: url('icons/icons.png'); /* Kendi ikon resminizi buraya ekleyin */
-      background-size: contain; /* Resmi butonun tamamına yay yerine orantılı olarak sığdır */
-      background-position: center; /* Resmi ortala */
-      background-repeat: no-repeat; /* Resmi tekrar etme */
-      transform: translateY(0); /* Initial state for animation */
-      text-shadow: 0 1px 2px rgba(0,0,0,0.4); /* Metne daha koyu gölge */
-      color: #FFF; /* Metin rengini beyaza çevir */
+      @apply inline-flex items-center justify-center font-bold px-8 py-4 rounded-full transition-all duration-300 ease-in-out; /* px-7 py-3.5 -> px-8 py-4 */
+      background-image: url('icons/icons.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: translateY(0);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      color: #facc15; /* text-yellow-300 */
+      border: 1px solid #eab308; /* border-yellow-500 for consistency */
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+
+      /* Explicitly ensure full rounding */
+      border-radius: 9999px;
     }
     .btn-secondary:hover {
-      background-size: 110%; /* Hover'da hafif büyütme */
+      background-size: 110%;
       transform: translateY(-3px) scale(1.01);
       box-shadow: 0 8px 15px rgba(252, 210, 31, 0.3);
       letter-spacing: 1px;
+      color: #FFF; /* hover:text-white */
     }
 
     section {
@@ -145,7 +156,7 @@
     <div class="flex gap-4 md:gap-8 items-center justify-center">
       <a class="btn-primary" href="#hero">Runik Bozkırlar</a>
       <button id="audioToggleBtn" class="w-10 h-10 rounded-full bg-black bg-opacity-50 border border-yellow-500 text-yellow-300 hover:text-white flex items-center justify-center text-lg shadow-md transition-colors">
-        🎵
+        🔇
       </button>
       <a class="btn-primary" href="#gallery">Galeri</a>
       <a class="btn-primary" href="#contact">Hakkımda & İletişim</a>
@@ -333,19 +344,19 @@ window.addEventListener('DOMContentLoaded', () => {
     audioToggleBtn.addEventListener('click', () => {
       if (audio.paused) {
         audio.play().then(() => {
-          audioToggleBtn.textContent = "🔇 Müziği Durdur";
+          audioToggleBtn.textContent = "🎵"; // Müzik çalarken nota simgesi
         }).catch(e => {
           console.error("Müzik başlatılamadı:", e);
         });
       } else {
         audio.pause();
-        audioToggleBtn.textContent = "🎵 Müziği Başlat";
+        audioToggleBtn.textContent = "🔇"; // Müzik dururken nota üzerinde çizgi simgesi
       }
     });
 
     // Sesin başka bir yerden çalınması/durdurulması durumunda buton metnini güncelle
-    audio.onplay = () => { audioToggleBtn.textContent = "🔇 Müziği Durdur"; };
-    audio.onpause = () => { audioToggleBtn.textContent = "🎵 Müziği Başlat"; };
+    audio.onplay = () => { audioToggleBtn.textContent = "🎵"; };
+    audio.onpause = () => { audioToggleBtn.textContent = "🔇"; };
   }
 });
 
