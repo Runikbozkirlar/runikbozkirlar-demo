@@ -138,7 +138,7 @@
 </style>
 </head>
 <body class="bg-black text-white" onclick="closeModal(event)">
-<nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 z-50 flex justify-center space-x-12 py-6 border-b border-gray-700 text-lg">
+<nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 z-50 flex flex-wrap justify-center gap-4 py-4 px-4 md:space-x-12 md:py-6 border-b border-gray-700 text-base md:text-lg">
 <a class="btn-primary" href="#hero">Anasayfa</a>
 <a class="btn-primary" href="#gallery">Galeri</a>
 <a class="btn-primary" href="#about-contact-combined">Hakkımda & İletişim</a>
@@ -152,10 +152,10 @@
 
 <div id="hero-carousel" class="relative w-full max-w-4xl mx-auto mt-8 mb-8 overflow-hidden rounded-xl shadow-lg flex-grow flex items-center justify-center">
     <div id="carousel-inner" class="flex transition-transform duration-700 ease-in-out h-full w-full">
-        <img src="images/gizemli.png" alt="Carousel Image 1" class="w-full h-full flex-shrink-0 object-contain">
-        <img src="images/savasci.png" alt="Carousel Image 2" class="w-full h-full flex-shrink-0 object-contain">
-        <img src="images/erlik.png" alt="Carousel Image 3" class="w-full h-full flex-shrink-0 object-contain">
-        <img src="images/kurt.png" alt="Carousel Image 4" class="w-full h-full flex-shrink-0 object-contain">
+        <img src="images/gizemli.png" alt="Carousel Image 1" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
+        <img src="images/savasci.png" alt="Carousel Image 2" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
+        <img src="images/erlik.png" alt="Carousel Image 3" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
+        <img src="images/kurt.png" alt="Carousel Image 4" class="w-full h-auto flex-shrink-0 object-contain max-h-[70vh]">
     </div>
 
     <button id="carousel-prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black bg-opacity-50 text-yellow-300 text-3xl p-2 rounded-full hover:bg-opacity-80 hover:text-white transition-all duration-300 focus:outline-none">
@@ -168,7 +168,7 @@
     <div id="carousel-indicators" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
         </div>
 </div>
-<div class="mt-10 text-gray-300 text-lg leading-relaxed">
+<div class="mt-10 text-gray-300 text-lg leading-relaxed max-w-prose mx-auto">
 <p>
         Runik Bozkırlar, kadim Türk ve İskandinav mitolojilerini bir araya getiren mistik bir evrendir. 
         Bu dünya; rün taşları, kurt figürleri, kadim tanrılar ve efsanevi yaratıklarla bezenmiş, geçmişin 
@@ -186,77 +186,77 @@
 </section>
 <section class="py-20 px-4 md:px-16 relative" id="gallery" style="background-image: url('images/hero_bg_full.png'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
 <div class="section-overlay"></div> <h2 class="text-4xl mb-12 text-center border-b border-gray-700 pb-4 relative z-10">Mitolojik Galeri</h2>
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 relative z-10">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 relative z-10">
 <div class="relative group cursor-pointer gallery-item" data-src="images/gizemli.png" data-text="Kimse onun nereden geldiğini bilmez. Konuşmaz, iz bırakmaz; sadece hissedilir. Sessizliğiyle varlık gösterir, karanlığın içindeki en büyük bilinmezdir.">
-<img alt="Gizemli" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" loading="lazy" src="images/gizemli.png"/>
+<img alt="Gizemli" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" loading="lazy" src="images/gizemli.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Gizemli</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/yilan.png" data-text="Zehir onun dili, sabır onun silahıdır. Yüzeye nadiren çıkar; but çıktığında kader değişir. Eski kehanetlerde onun gelişi felaketle eş tutulur">
-<img alt="Yılan" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/yilan.png"/>
+<img alt="Yılan" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/yilan.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Derinlik Yaratığı</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/savasci.png" data-text="Gündüz adını bilmez, gece adını anmazlar. Her kılıç darbesi sessiz, her hareketi ölümcül.">
-<img alt="Savaşçı" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/savasci.png"/>
+<img alt="Savaşçı" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/savasci.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Gölge Savaşçısı</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/shaman.png" data-text="Toprağa bastığında yer titreşir, rüzgâr saçlarını selamlar. Dört elementin ruhunu içinde taşıyan son kadim büyücüdür.">
-<img alt="Shaman" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/shaman.png"/>
+<img alt="Shaman" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/shaman.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Element Şamanı</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/mistik.png" data-text="Zaman onun için çizgisel değil, daireseldir. Her çağda bir iz bırakır, her dönemde göz olur.">
-<img alt="Mistik" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/mistik.png"/>
+<img alt="Mistik" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/mistik.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Zaman Gözcüsü</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/erlik.png" data-text="Bu varlık hakkında hiçbir efsane tam olarak anlatılamaz.">
-<img alt="Erlik" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/erlik.png"/>
+<img alt="Erlik" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/erlik.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Yeraltı Efendisi</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/deli.png" data-text="Bu varlık hakkında hiçbir efsane tam olarak anlatılamaz.">
-<img alt="Deli" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/deli.png"/>
+<img alt="Deli" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/deli.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Savaş Delisi</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/kurt.png" data-text="Bozkırın sonsuzluğunda yalnız dolaşan sadık bir yoldaş. Ay ışığında sessizce avlanır.">
-<img alt="Kurt" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/kurt.png"/>
+<img alt="Kurt" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/kurt.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Bozkır Kurdu</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/golgelerin_yolcusu.png" data-text="Ayak sesleri yoktur, izi görünmez. Yollar karardığında belirir. Hiçbir yerde yaşamadı ama her yerde iz bıraktı.">
-<img alt="GÖLGELERİN YOLCUSU" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/golgelerin_yolcusu.png"/>
+<img alt="GÖLGELERİN YOLCUSU" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/golgelerin_yolcusu.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">GÖLGELERİN YOLCUSU</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/gok_kirici.png" data-text="Yıldırım onun çağrısıdır, gök gürültüsü savaş narası. Göklere kafa tutan, tanrıların gazabıyla doğmuş bir savaşçıdır.">
-<img alt="GÖK KIRICI" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/gok_kirici.png"/>
+<img alt="GÖK KIRICI" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/gok_kirici.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">GÖK KIRICI</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/sessiz_koruyucu.png" data-text="Konuşmaz ama dağlar onu dinler. Yaprakların hışırtısıyla haber verir, tehlikeyi gölgesiyle durdurur.">
-<img alt="SESSİZ KORUYUCU" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/sessiz_koruyucu.png"/>
+<img alt="SESSİZ KORUYUCU" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/sessiz_koruyucu.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">SESSİZ KORUYUCU</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/geceyle_konusan.png" data-text="Gökyüzüyle fısıldaşır, yıldızları yazgı defteri gibi okur. Sessizliğiyle zamanı eğip büker.">
-<img alt="GECEYLE KONUŞAN" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/geceyle_konusan.png"/>
+<img alt="GECEYLE KONUŞAN" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/geceyle_konusan.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">GECEYLE KONUŞAN</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/demir_kalp.png" data-text="Ruhu ateşte, bedeni çelikte dövüldü. Ne acı hisseder ne pişmanlık. Savaş meydanlarında kalbi değil, görevi atar.">
-<img alt="DEMİR KALP" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/demir_kalp.png"/>
+<img alt="DEMİR KALP" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/demir_kalp.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">DEMİR KALP</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/kurt_golgesi.png" data-text="Kurtlar onu lider değil, eş sayar. Onunla yürüyen yalnız kalmaz, onunla savaşan düşman sağ çıkmaz.">
-<img alt="KURT GÖLGESİ" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/kurt_golgesi.png"/>
+<img alt="KURT GÖLGESİ" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/kurt_golgesi.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">KURT GÖLGESİ</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/ruzgar_yolcusu.png" data-text="Yol onun evi, esinti onun dostudur. Hiçbir yerde kalmaz ama her yere uğrar.">
-<img alt="RÜZGAR YOLCUSU" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/ruzgar_yolcusu.png"/>
+<img alt="RÜZGAR YOLCUSU" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/ruzgar_yolcusu.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">RÜZGAR YOLCUSU</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/kanli_yemin.png" data-text="Bir ihanete şahit oldu, sonra yemin etti. Her savaş onun kefareti, her düşman geçmişinin yankısıdır.">
-<img alt="KANLI YEMİN" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/kanli_yemin.png"/>
+<img alt="KANLI YEMİN" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/kanli_yemin.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">KANLI YEMİN</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/isik_bekcisi.png" data-text="Karanlık bastığında, umut onunla gelir. Işık onun kalkanıdır, adalet onun kılıcı.">
-<img alt="IŞIK BEKÇİSİ" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/isik_bekcisi.png"/>
+<img alt="IŞIK BEKÇİSİ" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/isik_bekcisi.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">IŞIK BEKÇİSİ</div>
 </div>
 <div class="relative group cursor-pointer gallery-item" data-src="images/heimdall.png" data-text="İki alemi bağlayan son geçidin nöbetçisi. Ne ileri geçene izin verir ne geri dönene.">
-<img alt="KÖPRÜ BEKÇİSİ" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/heimdall.png"/>
+<img alt="KÖPRÜ BEKÇİSİ" class="w-full h-48 md:h-64 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/heimdall.png"/>
 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">KÖPRÜ BEKÇİSİ</div>
 </div>
 </div>
