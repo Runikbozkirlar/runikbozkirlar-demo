@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Runik Bozkırlar</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #f4f4f4; /* Ensure text color is consistent */
+      letter-spacing: 0.75px; /* Hafif artırılmış harf aralığı */
+      line-height: 1.7; /* Okunabilirliği artırır */
+      font-weight: 300; /* Biraz daha ince bir font ağırlığı, zariflik katar */
+    }
+    h1, h2, h3, h4, h5 {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1.5px; /* Slightly more spacing for headings */
+    }
+    h1 {
+        font-weight: 800; /* Daha kalın */
+        text-shadow: 0 0 15px rgba(252, 210, 31, 0.4), 0 0 30px rgba(252, 210, 31, 0.1); /* Daha belirgin ve katmanlı gölge */
+    }
+    h2 {
+        font-weight: 700; /* Daha kalın */
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Hafif gölge */
+    }
+
+    /* Primary Button Styles */
+    .btn-primary {
+      /* Tailwind gradyanı ve arka plan rengini kaldırıp resim ekliyoruz */
+      @apply inline-flex items-center justify-center text-black font-bold px-7 py-3.5 rounded-full shadow-xl transition-all duration-300 ease-in-out;
+      background-image: url('icons/icons.png'); /* Kendi ikon resminizi buraya ekleyin */
+      background-size: contain; /* Resmi butonun tamamına yay yerine orantılı olarak sığdır */
+      background-position: center; /* Resmi ortala */
+      background-repeat: no-repeat; /* Resmi tekrar etme */
+      /* border: 1px solid rgba(252, 210, 31, 0.6); ARTIK YOK */
+      transform: translateY(0); /* Initial state for animation */
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4); /* Metne daha koyu gölge */
+      color: #FFF; /* Metin rengini beyaza çevir, resmin üzerinde daha net durabilir */
+    }
+    .btn-primary:hover {
+      /* Hover'da arka plan resmini hafifçe büyüt veya başka bir efekti uygula */
+      background-size: 110%; /* Hover'da hafif büyütme */
+      transform: translateY(-3px) scale(1.01); /* Hafif kalkma ve büyüme */
+      box-shadow: 0 10px 20px rgba(252, 210, 31, 0.4), 0 0 30px rgba(252, 210, 31, 0.2); /* Daha belirgin ve yaygın gölge */
+      letter-spacing: 1px; /* Hover'da harf aralığı artırma */
+    }
+
+    /* Secondary Button Styles */
+    .btn-secondary {
+      @apply inline-flex items-center justify-center text-yellow-300 px-7 py-3.5 rounded-full transition-all duration-300 ease-in-out; /* Şeffaf arka plan, daha kalın kenarlık */
+      /* border-2 border-yellow-500; ARTIK YOK - Tailwind'den de kaldırıldı */
+      background-image: url('icons/icons.png'); /* Kendi ikon resminizi buraya ekleyin */
+      background-size: contain; /* Resmi butonun tamamına yay yerine orantılı olarak sığdır */
+      background-position: center; /* Resmi ortala */
+      background-repeat: no-repeat; /* Resmi tekrar etme */
+      transform: translateY(0); /* Initial state for animation */
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4); /* Metne daha koyu gölge */
+      color: #FFF; /* Metin rengini beyaza çevir */
+    }
+    .btn-secondary:hover {
+      background-size: 110%; /* Hover'da hafif büyütme */
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 8px 15px rgba(252, 210, 31, 0.3);
+      letter-spacing: 1px;
+    }
+
+    section {
+      position: relative;
+    }
+    
+    /* Overlay for sections to control darkness */
+    .section-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: black;
+        opacity: 0.6; /* Reduced opacity for lighter background */
+        z-index: 0;
+    }
+
+    /* Custom styles for volume slider thumb */
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #facc15; /* yellow-400 */
+      cursor: grab;
+      box-shadow: 0 0 0 3px rgba(252, 210, 31, 0.5); /* A subtle glow */
+      margin-top: -6px; /* Adjust vertical position */
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #facc15; /* yellow-400 */
+      cursor: grab;
+      box-shadow: 0 0 0 3px rgba(252, 210, 31, 0.5);
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+        background: rgba(255, 255, 255, 0.2); /* Hafif saydam beyaz */
+        border-radius: 5px;
+        height: 4px;
+    }
+    input[type="range"]::-moz-range-track {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        height: 4px;
+    }
+
+    /* Modal Navigation Buttons */
+    #imageModal .absolute button { /* prevBtn ve nextBtn */
+        text-shadow: 0 0 10px rgba(252, 210, 31, 0.5); /* Gölgeli oklar */
+    }
+    #imageModal .absolute button:hover {
+        transform: scale(1.15); /* Daha belirgin büyüme */
+        background-color: rgba(0,0,0,0.7); /* Hover'da daha koyu arka plan */
+    }
+
+    /* Carousel Indicators */
+    #carousel-indicators div {
+        transition: all 0.3s ease-in-out; /* Geçiş ekle */
+    }
+    #carousel-indicators div.!bg-yellow-300 { /* Aktif gösterge */
+        transform: scale(1.2); /* Hafif büyüme */
+        box-shadow: 0 0 8px rgba(252, 210, 31, 0.7); /* Parlama efekti */
+    }
+
+</style>
+</head>
+<body class="bg-black text-white" onclick="closeModal(event)">
+<nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 z-50 flex justify-center space-x-12 py-6 border-b border-gray-700 text-lg">
+<a class="btn-primary" href="#hero">Anasayfa</a>
+<a class="btn-primary" href="#gallery">Galeri</a>
+<a class="btn-primary" href="#about-contact-combined">Hakkımda & İletişim</a>
+</nav>
+
+<section class="h-screen flex flex-col justify-center items-center text-center px-4 md:px-0 pt-20 relative" id="hero" style="background-image: url('images/hero_bg_full.png'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+<div class="section-overlay"></div> <div class="p-10 rounded-xl animate-fade-in w-full max-w-7xl h-full flex flex-col justify-center items-center relative z-10">
+<h1 class="text-5xl md:text-7xl font-bold mb-4 text-yellow-300 drop-shadow-lg">Runik Bozkırlar</h1>
+<p class="text-lg md:text-xl text-gray-300">Türk ve İskandinav mitolojilerinin sinematik ve karanlık buluşması</p>
+<p class="text-md mt-4 text-gray-400 italic">“Geçmişin rüzgarlarında, rün taşlarına kazınmış bir hikaye başlıyor...”</p>
+
+<div id="hero-carousel" class="relative w-full max-w-4xl mx-auto mt-8 mb-8 overflow-hidden rounded-xl shadow-lg flex-grow flex items-center justify-center">
+    <div id="carousel-inner" class="flex transition-transform duration-700 ease-in-out h-full w-full">
+        <img src="images/gizemli.png" alt="Carousel Image 1" class="w-full h-full flex-shrink-0 object-contain">
+        <img src="images/savasci.png" alt="Carousel Image 2" class="w-full h-full flex-shrink-0 object-contain">
+        <img src="images/erlik.png" alt="Carousel Image 3" class="w-full h-full flex-shrink-0 object-contain">
+        <img src="images/kurt.png" alt="Carousel Image 4" class="w-full h-full flex-shrink-0 object-contain">
+    </div>
+
+    <button id="carousel-prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black bg-opacity-50 text-yellow-300 text-3xl p-2 rounded-full hover:bg-opacity-80 hover:text-white transition-all duration-300 focus:outline-none">
+        &#10094;
+    </button>
+    <button id="carousel-next" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black bg-opacity-50 text-yellow-300 text-3xl p-2 rounded-full hover:bg-opacity-80 hover:text-white transition-all duration-300 focus:outline-none">
+        &#10095;
+    </button>
+
+    <div id="carousel-indicators" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+        </div>
+</div>
+<div class="mt-10 text-gray-300 text-lg leading-relaxed">
+<p>
+        Runik Bozkırlar, kadim Türk ve İskandinav mitolojilerini bir araya getiren mistik bir evrendir. 
+        Bu dünya; rün taşları, kurt figürleri, kadim tanrılar ve efsanevi yaratıklarla bezenmiş, geçmişin 
+        gölgeleriyle modern çağın estetiğini harmanlar. Her sahne, bilinmeyen diyarlardan yankılanan bir hikâyeyi anlatır. 
+        Bu evrende, bozkırın rüzgarlarıyla fısıldayan seslere kulak ver ve unutulmuş bilgeliğe doğru bir yolculuğa çık.
+      </p>
+<br/><p>Burada geçen hikâyeler, yalnızca mitlerin değil, duyguların da dilini konuşur. Her taşın altında bir sır, her gölgenin ardında bir geçmiş saklıdır. Runik Bozkırlar evreni, sadece bir görsel şölen değil; aynı zamanda ruhani bir keşiftir.</p></div>
+<a class="btn-primary mt-10" href="#gallery">
+      Galeriyi Keşfet
+    </a>
+<a class="btn-secondary mt-6" href="https://x.com/RunikBozkirlar" target="_blank">
+       X Hesabımızı Ziyaret Et
+    </a>
+</div>
+</section>
+<section class="py-20 px-4 md:px-16 relative" id="gallery" style="background-image: url('images/hero_bg_full.png'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+<div class="section-overlay"></div> <h2 class="text-4xl mb-12 text-center border-b border-gray-700 pb-4 relative z-10">Mitolojik Galeri</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 relative z-10">
+<div class="relative group cursor-pointer gallery-item" data-src="images/gizemli.png" data-text="Kimse onun nereden geldiğini bilmez. Konuşmaz, iz bırakmaz; sadece hissedilir. Sessizliğiyle varlık gösterir, karanlığın içindeki en büyük bilinmezdir.">
+<img alt="Gizemli" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" loading="lazy" src="images/gizemli.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Gizemli</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/yilan.png" data-text="Zehir onun dili, sabır onun silahıdır. Yüzeye nadiren çıkar; but çıktığında kader değişir. Eski kehanetlerde onun gelişi felaketle eş tutulur">
+<img alt="Yılan" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/yilan.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Derinlik Yaratığı</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/savasci.png" data-text="Gündüz adını bilmez, gece adını anmazlar. Her kılıç darbesi sessiz, her hareketi ölümcül.">
+<img alt="Savaşçı" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/savasci.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Gölge Savaşçısı</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/shaman.png" data-text="Toprağa bastığında yer titreşir, rüzgâr saçlarını selamlar. Dört elementin ruhunu içinde taşıyan son kadim büyücüdür.">
+<img alt="Shaman" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/shaman.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Element Şamanı</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/mistik.png" data-text="Zaman onun için çizgisel değil, daireseldir. Her çağda bir iz bırakır, her dönemde göz olur.">
+<img alt="Mistik" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/mistik.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Zaman Gözcüsü</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/erlik.png" data-text="Bu varlık hakkında hiçbir efsane tam olarak anlatılamaz.">
+<img alt="Erlik" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/erlik.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Yeraltı Efendisi</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/deli.png" data-text="Bu varlık hakkında hiçbir efsane tam olarak anlatılamaz.">
+<img alt="Deli" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/deli.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Savaş Delisi</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/kurt.png" data-text="Bozkırın sonsuzluğunda yalnız dolaşan sadık bir yoldaş. Ay ışığında sessizce avlanır.">
+<img alt="Kurt" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300" src="images/kurt.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">Bozkır Kurdu</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/golgelerin_yolcusu.png" data-text="Ayak sesleri yoktur, izi görünmez. Yollar karardığında belirir. Hiçbir yerde yaşamadı ama her yerde iz bıraktı.">
+<img alt="GÖLGELERİN YOLCUSU" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/golgelerin_yolcusu.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">GÖLGELERİN YOLCUSU</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/gok_kirici.png" data-text="Yıldırım onun çağrısıdır, gök gürültüsü savaş narası. Göklere kafa tutan, tanrıların gazabıyla doğmuş bir savaşçıdır.">
+<img alt="GÖK KIRICI" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/gok_kirici.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">GÖK KIRICI</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/sessiz_koruyucu.png" data-text="Konuşmaz ama dağlar onu dinler. Yaprakların hışırtısıyla haber verir, tehlikeyi gölgesiyle durdurur.">
+<img alt="SESSİZ KORUYUCU" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/sessiz_koruyucu.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">SESSİZ KORUYUCU</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/geceyle_konusan.png" data-text="Gökyüzüyle fısıldaşır, yıldızları yazgı defteri gibi okur. Sessizliğiyle zamanı eğip büker.">
+<img alt="GECEYLE KONUŞAN" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/geceyle_konusan.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">GECEYLE KONUŞAN</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/demir_kalp.png" data-text="Ruhu ateşte, bedeni çelikte dövüldü. Ne acı hisseder ne pişmanlık. Savaş meydanlarında kalbi değil, görevi atar.">
+<img alt="DEMİR KALP" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/demir_kalp.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">DEMİR KALP</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/kurt_golgesi.png" data-text="Kurtlar onu lider değil, eş sayar. Onunla yürüyen yalnız kalmaz, onunla savaşan düşman sağ çıkmaz.">
+<img alt="KURT GÖLGESİ" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/kurt_golgesi.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">KURT GÖLGESİ</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/ruzgar_yolcusu.png" data-text="Yol onun evi, esinti onun dostudur. Hiçbir yerde kalmaz ama her yere uğrar.">
+<img alt="RÜZGAR YOLCUSU" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/ruzgar_yolcusu.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">RÜZGAR YOLCUSU</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/kanli_yemin.png" data-text="Bir ihanete şahit oldu, sonra yemin etti. Her savaş onun kefareti, her düşman geçmişinin yankısıdır.">
+<img alt="KANLI YEMİN" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/kanli_yemin.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">KANLI YEMİN</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/isik_bekcisi.png" data-text="Karanlık bastığında, umut onunla gelir. Işık onun kalkanıdır, adalet onun kılıcı.">
+<img alt="IŞIK BEKÇİSİ" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/isik_bekcisi.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">IŞIK BEKÇİSİ</div>
+</div>
+<div class="relative group cursor-pointer gallery-item" data-src="images/heimdall.png" data-text="İki alemi bağlayan son geçidin nöbetçisi. Ne ileri geçene izin verir ne geri dönene.">
+<img alt="KÖPRÜ BEKÇİSİ" class="w-full h-48 object-cover rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-300 mb-2" src="images/heimdall.png"/>
+<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-center py-2 text-yellow-300 font-semibold">KÖPRÜ BEKÇİSİ</div>
+</div>
+</div>
+</section>
+<div class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center hidden z-50 p-4 transition-opacity duration-500 ease-out" id="imageModal" onclick="closeModal(event)">
+<div class="w-full flex flex-col items-center bg-black bg-opacity-90 rounded-xl max-w-3xl p-6 shadow-2xl text-white relative" id="modalContent" onclick="event.stopPropagation()">
+<span class="absolute top-6 right-6 text-3xl cursor-pointer text-yellow-300 hover:text-white transition-colors" onclick="closeModal()">×</span>
+<img class="max-h-[80vh] object-contain rounded-xl mb-4" id="modalImage" src=""/>
+<div class="text-center w-full max-w-2xl">
+<h3 class="text-yellow-300 text-2xl md:text-3xl font-semibold mb-4 font-serif tracking-wide" id="modalTitle"></h3>
+<p class="text-sm text-gray-300" id="modalText"></p>
+</div>
+<div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4">
+<button class="bg-black bg-opacity-50 text-yellow-300 text-6xl p-3 rounded-full hover:bg-opacity-80 hover:text-white transition-all duration-300 transform hover:scale-110 focus:outline-none" id="prevBtn">‹</button>
+<button class="bg-black bg-opacity-50 text-yellow-300 text-6xl p-3 rounded-full hover:bg-opacity-80 hover:text-white transition-all duration-300 transform hover:scale-110 focus:outline-none" id="nextBtn">›</button>
+</div>
+</div>
+</div>
+
+<section class="py-24 px-8 md:px-24 text-center relative" id="about-contact-combined" style="background-image: url('images/hero_bg_full.png'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+    <div class="section-overlay"></div> <div class="relative z-10 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div class="flex flex-col justify-center items-center">
+            <h2 class="text-4xl mb-6 text-yellow-300">Hakkımda</h2>
+            <p class="text-lg leading-relaxed">Runik Bozkırlar, Türk ve İskandinav mitolojilerini birleştirerek sinematik ve epik sahnelerle yeniden hayat bulduğu yaratıcı bir evrendir. AI destekli görsellerle oluşturulan bu evren, geçmişin ruhunu modern estetikle sunar. Her kare, bir efsanenin yeniden doğuşudur.</p>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+            <h2 class="text-4xl mb-6 text-yellow-300">İletişim</h2>
+            <p class="mb-4 text-lg">X (Twitter): <a class="text-blue-400 hover:underline" href="https://x.com/RunikBozkirlar">@RunikBozkirlar</a></p>
+            <p class="text-lg">E-posta: <a href="mailto:runikbozkirlar@gmail.com" class="text-blue-400 hover:underline">runikbozkirlar@gmail.com</a></p>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-black bg-opacity-70 text-gray-300 text-center border-t border-gray-700" style="padding: 2rem 0; font-size: 0.875rem;">
+    © 2025 Runik Bozkırlar. Tüm hakları saklıdır.
+  </footer>
+
+<div class="fixed top-[6rem] right-4 z-50 p-4 bg-black bg-opacity-70 rounded-lg shadow-lg border border-yellow-600 flex flex-col items-center space-y-4">
+  <button id="audioToggleBtn" class="btn-primary text-lg px-6 py-3">
+    🎵 Müziği Başlat
+  </button>
+  <div class="flex items-center space-x-2 w-full max-w-[200px]">
+    <span class="text-yellow-300 text-sm font-semibold">Ses:</span>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5" class="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer">
+  </div>
+</div>
+<div class="fixed bottom-4 right-4 z-50">
+  <a href="#hero" class="btn-primary text-lg flex items-center space-x-2">
+    <span>🏠</span>
+    <span>Anasayfaya Dön</span>
+  </a>
+</div>
+<audio id="bg-music" loop>
+<source src="audio/fonmuzigi.mp3" type="audio/mpeg"/>
+  Tarayıcınız ses dosyasını desteklemiyor.
+</audio>
+
+<script>
+// Müzik kontrolü scripti
+window.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById("bg-music");
+  const audioToggleBtn = document.getElementById("audioToggleBtn");
+  const volumeSlider = document.getElementById("volumeSlider");
+
+  // İlk açılışta sesi %50 olarak ayarla
+  audio.volume = volumeSlider.value;
+
+  audioToggleBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().then(() => {
+        audioToggleBtn.textContent = "🔇 Müziği Durdur";
+      }).catch(e => {
+        console.error("Müzik başlatılamadı:", e);
+      });
+    } else {
+      audio.pause();
+      audioToggleBtn.textContent = "🎵 Müziği Başlat";
+    }
+  });
+
+  volumeSlider.addEventListener('input', (event) => {
+    audio.volume = event.target.value;
+  });
+
+  // Sesin başka bir yerden çalınması/durdurulması durumunda buton metnini güncelle
+  audio.onplay = () => { audioToggleBtn.textContent = "🔇 Müziği Durdur"; };
+  audio.onpause = () => { audioToggleBtn.textContent = "🎵 Müziği Başlat"; };
+});
+
+
+// Hero Carousel Script
+window.addEventListener('DOMContentLoaded', () => {
+    const carouselInner = document.getElementById('carousel-inner');
+    const carouselPrevBtn = document.getElementById('carousel-prev');
+    const carouselNextBtn = document.getElementById('carousel-next');
+    const carouselIndicatorsContainer = document.getElementById('carousel-indicators');
+    const carouselItems = Array.from(carouselInner.children); // Get all direct image children
+
+    let currentCarouselIndex = 0;
+    const totalCarouselItems = carouselItems.length;
+
+    // Create indicators
+    carouselItems.forEach((_, index) => {
+        const indicator = document.createElement('div');
+        indicator.classList.add('w-3', 'h-3', 'bg-gray-400', 'rounded-full', 'cursor-pointer', 'transition-colors', 'duration-300');
+        indicator.dataset.index = index;
+        if (index === 0) {
+            indicator.classList.add('!bg-yellow-300'); // Highlight active indicator using !important
+        }
+        indicator.addEventListener('click', () => {
+            showCarouselSlide(index);
+        });
+        carouselIndicatorsContainer.appendChild(indicator);
+    });
+
+    const carouselIndicators = Array.from(carouselIndicatorsContainer.children);
+
+    function showCarouselSlide(index) {
+        if (index < 0) {
+            currentCarouselIndex = totalCarouselItems - 1;
+        } else if (index >= totalCarouselItems) {
+            currentCarouselIndex = 0;
+        } else {
+            currentCarouselIndex = index;
+        }
+
+        const offset = -currentCarouselIndex * 100;
+        carouselInner.style.transform = `translateX(${offset}%)`;
+
+        // Update indicators
+        carouselIndicators.forEach((indicator, i) => {
+            if (i === currentCarouselIndex) {
+                indicator.classList.add('!bg-yellow-300');
+            } else {
+                indicator.classList.remove('!bg-yellow-300');
+            }
+        });
+    }
+
+    carouselPrevBtn.addEventListener('click', () => {
+        showCarouselSlide(currentCarouselIndex - 1);
+    });
+
+    carouselNextBtn.addEventListener('click', () => {
+        showCarouselSlide(currentCarouselIndex + 1);
+    });
+
+    // Optional: Auto-play carousel
+    setInterval(() => {
+        showCarouselSlide(currentCarouselIndex + 1);
+    }, 5000); // Change slide every 5 seconds
+});
+
+
+// Galeri ve modal scriptleri (önceki haliyle aynı)
+let galleryItems = [];
+let currentIndex = 0;
+
+function openModalWithText(event, src, text) {
+  if (event) { 
+    event.stopPropagation(); 
+  }
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalText = document.getElementById('modalText');
+
+  modalImage.src = src;
+  modalText.textContent = text || '';
+
+  currentIndex = galleryItems.findIndex(item => item.src === src);
+
+  modal.classList.remove('hidden');
+  modal.classList.add('opacity-0');
+  setTimeout(() => modal.classList.remove('opacity-0'), 10);
+}
+
+function closeModal(e) {
+  if (!e || (e && !document.getElementById('modalContent').contains(e.target))) {
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('opacity-0');
+    setTimeout(() => modal.classList.add('hidden'), 300);
+    document.getElementById('modalImage').src = '';
+    document.getElementById('modalTitle').textContent = ''; 
+    document.getElementById('modalText').textContent = ''; 
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll(".gallery-item").forEach(el => { 
+    const img = el.querySelector('img');
+    const src = img.src;
+    const text = el.dataset.text; 
+    
+    galleryItems.push({ src: src, text: text });
+
+    el.addEventListener('click', (e) => { 
+      openModalWithText(e, src, text); 
+    });
+  });
+
+  document.getElementById('prevBtn').addEventListener('click', (e) => {
+    e.stopPropagation(); 
+    currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[currentIndex];
+    openModalWithText(null, item.src, item.text); 
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', (e) => {
+    e.stopPropagation(); 
+    currentIndex = (currentIndex + 1) % galleryItems.length;
+    const item = galleryItems[currentIndex];
+    openModalWithText(null, item.src, item.text); 
+  });
+});
+</script>
+<div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden" id="regionModal">
+<div class="bg-gray-900 border border-yellow-500 rounded-lg p-6 relative max-w-3xl w-full">
+<button class="absolute top-2 right-2 text-yellow-300 text-2xl font-bold" onclick="document.getElementById('regionModal').classList.add('hidden')">×</button>
+<img alt="Bölge Görseli" class="rounded w-full mb-4" id="regionImage" src=""/>
+<p class="text-gray-300 text-lg" id="regionDescription"></p>
+</div>
+</div>
+<script>
+function openRegionModal(imageSrc, description) {
+  document.getElementById("regionImage").src = imageSrc;
+  document.getElementById("regionDescription").innerText = description;
+  document.getElementById("regionModal").classList.remove("hidden");
+}
+</script>
+</body>
+</html>
