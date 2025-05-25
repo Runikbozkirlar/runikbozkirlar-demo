@@ -5,21 +5,6 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Runik Bozkırlar</title>
 <script src="https://cdn.tailwindcss.com">
-window.addEventListener('DOMContentLoaded', () => {
-  function updateAudioPosition() {
-    const box = document.getElementById('audioControl');
-    if (window.matchMedia("(orientation: landscape)").matches) {
-      box.classList.remove("bottom-24");
-      box.classList.add("top-24");
-    } else {
-      box.classList.remove("top-24");
-      box.classList.add("bottom-24");
-    }
-  }
-  window.addEventListener('resize', updateAudioPosition);
-  updateAudioPosition();
-});
-
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&amp;display=swap" rel="stylesheet"/>
@@ -279,7 +264,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </section>
 <div class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center hidden z-50 p-4 transition-opacity duration-500 ease-out" id="imageModal" onclick="closeModal(event)">
 <div class="w-full flex flex-col items-center bg-black bg-opacity-90 rounded-xl max-w-3xl p-6 shadow-2xl text-white relative" id="modalContent" onclick="event.stopPropagation()">
-<span class="absolute top-6 right-6 text-3xl cursor-pointer text-yellow-300 hover:text-white transition-colors" onclick="closeModal()">×</span>
+<span class="absolute top-6 right-6 text-3xl cursor-pointer text-yellow-300 hover:text-white transition-colors" onclick="closeModal(event)">×</span>
 <img class="max-h-[80vh] object-contain rounded-xl mb-4" id="modalImage" src=""/>
 <div class="text-center w-full max-w-2xl">
 <h3 class="text-yellow-300 text-2xl md:text-3xl font-semibold mb-4 font-serif tracking-wide" id="modalTitle"></h3>
@@ -310,7 +295,7 @@ window.addEventListener('DOMContentLoaded', () => {
     © 2025 Runik Bozkırlar. Tüm hakları saklıdır.
   </footer>
 
-<div id="audioControl" class="fixed bottom-24 right-4 z-50 p-2 bg-black bg-opacity-60 rounded-full shadow-lg border border-yellow-500 flex items-center space-x-2 text-sm md:text-base">
+<div id="audioControl" class="fixed top-20 left-4 z-50 p-2 bg-black bg-opacity-60 rounded-full shadow-md border border-yellow-500 flex items-center space-x-2 text-sm md:text-base">
   <button id="audioToggleBtn" class="text-yellow-300 hover:text-white transition-colors px-2">
     🎵
   </button>
@@ -485,21 +470,6 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-  function updateAudioPosition() {
-    const box = document.getElementById('audioControl');
-    if (window.matchMedia("(orientation: landscape)").matches) {
-      box.classList.remove("bottom-24");
-      box.classList.add("top-24");
-    } else {
-      box.classList.remove("top-24");
-      box.classList.add("bottom-24");
-    }
-  }
-  window.addEventListener('resize', updateAudioPosition);
-  updateAudioPosition();
-});
-
 </script>
 <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden" id="regionModal">
 <div class="bg-gray-900 border border-yellow-500 rounded-lg p-6 relative max-w-3xl w-full">
@@ -514,21 +484,6 @@ function openRegionModal(imageSrc, description) {
   document.getElementById("regionDescription").innerText = description;
   document.getElementById("regionModal").classList.remove("hidden");
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-  function updateAudioPosition() {
-    const box = document.getElementById('audioControl');
-    if (window.matchMedia("(orientation: landscape)").matches) {
-      box.classList.remove("bottom-24");
-      box.classList.add("top-24");
-    } else {
-      box.classList.remove("top-24");
-      box.classList.add("bottom-24");
-    }
-  }
-  window.addEventListener('resize', updateAudioPosition);
-  updateAudioPosition();
-});
 
 </script>
 </body>
