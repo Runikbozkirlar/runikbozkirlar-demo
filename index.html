@@ -4,7 +4,23 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Runik Bozkırlar</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com">
+window.addEventListener('DOMContentLoaded', () => {
+  function updateAudioPosition() {
+    const box = document.getElementById('audioControl');
+    if (window.matchMedia("(orientation: landscape)").matches) {
+      box.classList.remove("bottom-24");
+      box.classList.add("top-24");
+    } else {
+      box.classList.remove("top-24");
+      box.classList.add("bottom-24");
+    }
+  }
+  window.addEventListener('resize', updateAudioPosition);
+  updateAudioPosition();
+});
+
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -294,14 +310,11 @@
     © 2025 Runik Bozkırlar. Tüm hakları saklıdır.
   </footer>
 
-<div class="fixed top-[6rem] right-4 z-50 p-4 bg-black bg-opacity-70 rounded-lg shadow-lg border border-yellow-600 flex flex-col items-center space-y-4">
-  <button id="audioToggleBtn" class="btn-primary text-lg px-6 py-3">
-    🎵 Müziği Başlat
+<div id="audioControl" class="fixed bottom-24 right-4 z-50 p-2 bg-black bg-opacity-60 rounded-full shadow-lg border border-yellow-500 flex items-center space-x-2 text-sm md:text-base">
+  <button id="audioToggleBtn" class="text-yellow-300 hover:text-white transition-colors px-2">
+    🎵
   </button>
-  <div class="flex items-center space-x-2 w-full max-w-[200px]">
-    <span class="text-yellow-300 text-sm font-semibold">Ses:</span>
-    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5" class="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer">
-  </div>
+  <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5" class="w-24 h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer hidden md:block">
 </div>
 <div class="fixed bottom-4 right-4 z-50">
   <a href="#hero" class="btn-primary text-lg flex items-center space-x-2">
@@ -471,6 +484,22 @@ window.addEventListener('DOMContentLoaded', () => {
     openModalWithText(null, item.src, item.text); 
   });
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+  function updateAudioPosition() {
+    const box = document.getElementById('audioControl');
+    if (window.matchMedia("(orientation: landscape)").matches) {
+      box.classList.remove("bottom-24");
+      box.classList.add("top-24");
+    } else {
+      box.classList.remove("top-24");
+      box.classList.add("bottom-24");
+    }
+  }
+  window.addEventListener('resize', updateAudioPosition);
+  updateAudioPosition();
+});
+
 </script>
 <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden" id="regionModal">
 <div class="bg-gray-900 border border-yellow-500 rounded-lg p-6 relative max-w-3xl w-full">
@@ -485,6 +514,22 @@ function openRegionModal(imageSrc, description) {
   document.getElementById("regionDescription").innerText = description;
   document.getElementById("regionModal").classList.remove("hidden");
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  function updateAudioPosition() {
+    const box = document.getElementById('audioControl');
+    if (window.matchMedia("(orientation: landscape)").matches) {
+      box.classList.remove("bottom-24");
+      box.classList.add("top-24");
+    } else {
+      box.classList.remove("top-24");
+      box.classList.add("bottom-24");
+    }
+  }
+  window.addEventListener('resize', updateAudioPosition);
+  updateAudioPosition();
+});
+
 </script>
 </body>
 </html>
